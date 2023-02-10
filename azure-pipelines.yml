@@ -20,9 +20,17 @@ steps:
 - script: |
     echo $NUGETSOURCE
     echo $NUGETTOKEN
+    echo $CSPROJ_PATH
+    echo $CONFIGURATION
+    echo $(Build.ArtifactStagingDirectory)
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '$CSPROJ_PATH'
+    arguments: '--output $(Build.ArtifactStagingDirectory)'
 
 - script: |
-    dotnet build $CSPROJ_PATH --output $(Build.ArtifactStagingDirectory) --configuration $CONFIGURATION
     dotnet pack $CSPROJ_PATH -p:PackageVersion=1.0.0 --output $(Build.ArtifactStagingDirectory) --configuration $CONFIGURATION
     dotnet nuget push '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg' --source $NUGETSOURCE --api-key $NUGETTOKEN
   displayName: "Build, pack and push"  
