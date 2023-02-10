@@ -9,14 +9,15 @@ trigger:
 variables:
   - group: nuget.org
   - name: nuget_org
-    value: 'Build nuget_org'
+    value: 'Build nuget.org'
 
 pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo $nugetserver
-- script: echo $nugettoken 
+- script: echo $(nuget_org) |
+          echo $nugetserver
+          echo $nugettoken 
 
 - script: |
     dotnet build src/Grpc.Testing.Moq/Grpc.Testing.Moq.csproj --configuration Release
