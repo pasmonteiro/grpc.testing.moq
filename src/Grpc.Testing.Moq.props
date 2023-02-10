@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <AdditionalFileItemNames>$(AdditionalFileItemNames);Protobuf</AdditionalFileItemNames>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "MyCompany.Grpc.Services";
+
+package my_company.grpc.services.orders;
+
+message GetOrderRequestMsg {
+    int32 id = 1;
+}
+
+message GetOrderResponseMsg {
+    bool success = 1;
+    OrderMsg order = 2;
+}
+
+message OrderMsg {
+    int32 id = 1;
+    string name = 2;
+    double price = 3;
+}
+
+message SearchOrdersMsg {
+    bool active = 1;
+}
+
+service OrdersService {
+    rpc Get(GetOrderRequestMsg) returns (GetOrderResponseMsg) {}
+    rpc Search(SearchOrdersMsg) returns (stream OrderMsg) {}
+    rpc GetAll(google.protobuf.Empty) returns (stream OrderMsg) {}
+}
