@@ -27,7 +27,8 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: '$CSPROJ_PATH'
+    configuration: $CONFIGURATION
+    projects: $CSPROJ_PATH
     arguments: '--output $(Build.ArtifactStagingDirectory)'
 
 - script: |
