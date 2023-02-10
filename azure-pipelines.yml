@@ -15,7 +15,8 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo $(nuget_org) |
+- script: |
+          echo $(nuget_org)
           echo $nugetserver
           echo $nugettoken 
 
