@@ -8,39 +8,21 @@ trigger:
 
 variables:
   - group: 'nuget.org'
-  - name: nuget_org
-    value: 'Build nuget.org'
+  - name: CSPROJ_PATH
+    value: 'src/Grpc.Testing.Moq/Grpc.Testing.Moq.csproj'
+  - name: CONFIGURATION
+    value: 'Release'
 
 pool:
   vmImage: ubuntu-latest
 
 steps:
 - script: |
-    echo $(nuget_org)
-    echo $NUGETHOST
-    echo $NUGETTOKEN 
+    echo $NUGETSOURCE
+    echo $NUGETTOKEN
 
 - script: |
-    dotnet build src/Grpc.Testing.Moq/Grpc.Testing.Moq.csproj --configuration Release
-  displayName: "Build"
-
-- task: NuGetCommand@2
-  inputs:
-    command: pack
-    packagesToPack: 'src/Grpc.Testing.Moq/Grpc.Testing.Moq.csproj'
-    packDestination: '$(Build.ArtifactStagingDirectory)'
-    configuration: 'Release'
-  displayName: "Nuget Pack"
-
-- task: NuGetAuthenticate@0
-  inputs:
-    nuGetServiceConnections: nuget.org
-  displayName: "Nuget Authenticate"
-
-- task: NuGetCommand@2
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-    nuGetFeedType: 'external'
-    publishFeedCredentials: 'nuget.org'
-  displayName: "Nuget Push"
+    dotnet build $CSPROJ_PATH --configuration $CONFIGURATION
+    dotnet pack $CSPROJ_PATH -p:PackageVersion=1.0.0 --output $(Build.ArtifactStagingDirectory) --configuration $CONFIGURATION
+    dotnet nuget push '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg' --source $NUGETSOURCE --api-key $NUGETTOKEN
+  displayName: "Build, pack and push"  
