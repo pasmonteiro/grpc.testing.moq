@@ -13,7 +13,19 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: NuGetAuthenticate@0
+  inputs:
+    nuGetServiceConnections: nuget-pasmonteiro
+
+- task: NuGetCommand@2
+  inputs:
+    command: pack
+    packagesToPack: 'src/Grpc.Testing.Moq/Grpc.Testing.Moq.csproj'
+    packDestination: '$(Build.ArtifactStagingDirectory)'
+    configuration: 'Release'
+
+- task: NuGetCommand@2
+  inputs:
+    command: push
+    nuGetFeedType: external
+    versioningScheme: byBuildNumber
