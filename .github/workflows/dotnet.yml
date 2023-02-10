@@ -20,8 +20,8 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build src/Grpc.Testing.Moq/Grpc.Testing.Moq.csproj -c Release -o out --no-restore
+      run: dotnet build src/Grpc.Testing.Moq/Grpc.Testing.Moq.csproj -c Release --no-restore
     - name: Nuget Pack
-      run: dotnet pack src/Grpc.Testing.Moq/Grpc.Testing.Moq.csproj -p:PackageVersion=1.0.0 -c Release -o out
+      run: dotnet pack src/Grpc.Testing.Moq/Grpc.Testing.Moq.csproj -p:PackageVersion=1.0.0 -c Release
     - name: Nuget Push
-      run: dotnet push ./out/*.nupkg --source ${{ vars.NUGETSOURCE }} --api-key ${{ secrets.NUGETTOKEN }} --skip-duplicate --no-symbols true
+      run: dotnet push ./**/*.nupkg --source ${{ vars.NUGETSOURCE }} --api-key ${{ secrets.NUGETTOKEN }} --skip-duplicate --no-symbols true
