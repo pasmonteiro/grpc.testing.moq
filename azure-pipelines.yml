@@ -19,6 +19,12 @@ steps:
 
 - task: NuGetCommand@2
   inputs:
+    command: 'restore'
+    restoreSolution: '**/*.sln'
+    feedsToUse: 'select'
+
+- task: NuGetCommand@2
+  inputs:
     command: pack
     packagesToPack: 'src/Grpc.Testing.Moq/Grpc.Testing.Moq.csproj'
     packDestination: '$(Build.ArtifactStagingDirectory)'
