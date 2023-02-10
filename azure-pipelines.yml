@@ -30,6 +30,7 @@ steps:
 
 - task: NuGetCommand@2
   inputs:
-    command: push
-    nuGetFeedType: external
-    versioningScheme: byBuildNumber
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'nuget-pasmonteiro'
