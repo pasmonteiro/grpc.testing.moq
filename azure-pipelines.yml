@@ -22,7 +22,7 @@ steps:
     echo $NUGETTOKEN
 
 - script: |
-    dotnet build $CSPROJ_PATH --configuration $CONFIGURATION
-    dotnet pack $CSPROJ_PATH -p:PackageVersion=1.0.0 --configuration $CONFIGURATION
+    dotnet build $CSPROJ_PATH --output $(Build.ArtifactStagingDirectory) --configuration $CONFIGURATION
+    dotnet pack $CSPROJ_PATH -p:PackageVersion=1.0.0 --output $(Build.ArtifactStagingDirectory) --configuration $CONFIGURATION
     dotnet nuget push '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg' --source $NUGETSOURCE --api-key $NUGETTOKEN
   displayName: "Build, pack and push"  
