@@ -13,10 +13,6 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-- task: NuGetAuthenticate@0
-  inputs:
-    nuGetServiceConnections: nuget-pasmonteiro
-
 - script: |
     dotnet build src/Grpc.Testing.Moq/Grpc.Testing.Moq.csproj --configuration Release
   displayName: "Build"
@@ -27,6 +23,10 @@ steps:
     packagesToPack: 'src/Grpc.Testing.Moq/Grpc.Testing.Moq.csproj'
     packDestination: '$(Build.ArtifactStagingDirectory)'
     configuration: 'Release'
+
+- task: NuGetAuthenticate@0
+  inputs:
+    nuGetServiceConnections: nuget-pasmonteiro
 
 - task: NuGetCommand@2
   inputs:
