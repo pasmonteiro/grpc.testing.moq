@@ -24,7 +24,7 @@ steps:
 
 - task: NuGetAuthenticate@0
   inputs:
-    nuGetServiceConnections: nuget-pasmonteiro
+    nuGetServiceConnections: nuget.org
   displayName: "Nuget Authenticate"
 
 - task: NuGetCommand@2
@@ -32,5 +32,5 @@ steps:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'external'
-    publishFeedCredentials: 'nuget-pasmonteiro'
+    publishFeedCredentials: nuget.org
   displayName: "Nuget Push"
