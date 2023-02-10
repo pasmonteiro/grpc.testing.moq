@@ -7,7 +7,7 @@ trigger:
 - main
 
 variables:
-  - group: nuget.org
+  - group: 'nuget.org'
   - name: nuget_org
     value: 'Build nuget.org'
 
@@ -16,9 +16,9 @@ pool:
 
 steps:
 - script: |
-          echo $(nuget_org)
-          echo $nugetserver
-          echo $nugettoken 
+    echo $(nuget_org)
+    echo $NUGETHOST
+    echo $NUGETTOKEN 
 
 - script: |
     dotnet build src/Grpc.Testing.Moq/Grpc.Testing.Moq.csproj --configuration Release
