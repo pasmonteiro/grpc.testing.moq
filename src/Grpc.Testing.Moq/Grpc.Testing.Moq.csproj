@@ -18,7 +18,6 @@
     <RespositoryType>git</RespositoryType>
     <PackageTags>grpc;rpc;C#;moq;unittest;unittesting;mocks;mocking;tdd</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <EnablePackageValidation>true</EnablePackageValidation>
 
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
