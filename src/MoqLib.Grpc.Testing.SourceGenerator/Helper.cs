@@ -2,7 +2,7 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 
-namespace Grpc.Testing.Moq;
+namespace MoqLib.Grpc.Testing.SourceGenerator;
 
 internal static class Helper
 {

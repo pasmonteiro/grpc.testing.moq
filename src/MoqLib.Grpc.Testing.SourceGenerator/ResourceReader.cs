@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace Grpc.Testing.Moq;
+namespace MoqLib.Grpc.Testing.SourceGenerator;
 
 internal class ResourceReader
 {

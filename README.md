@@ -1,4 +1,4 @@
-# grpc.testing.moq
+# MoqLib.Grpc.Testing.SourceGenerator
 
 This package generates Mock setup methods using [Source Generators](https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/source-generators-overview) to make gRPC tests easier.
 The source code generated makes use of the following dependencies:
@@ -13,7 +13,7 @@ The source code generated makes use of the following dependencies:
 Make sure this packages are added to the test project:
 
 ```shell
-dotnet add package Grpc.Testing.Moq
+dotnet add package MoqLib.Grpc.Testing.SourceGenerator
 dotnet add package Moq
 dotnet add package Grpc.Tools
 dotnet add package Grpc.Core

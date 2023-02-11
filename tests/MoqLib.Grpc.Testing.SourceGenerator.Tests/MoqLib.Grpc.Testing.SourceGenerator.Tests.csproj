@@ -1,5 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="..\..\src\Grpc.Testing.Moq.Props" />
+  <Import Project="..\..\src\MoqLib.Grpc.Testing.SourceGenerator.Props" />
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Grpc.Testing.Moq\Grpc.Testing.Moq.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false">
+    <ProjectReference Include="..\..\src\MoqLib.Grpc.Testing.SourceGenerator\MoqLib.Grpc.Testing.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false">
       <IncludeAssets>all</IncludeAssets>
     </ProjectReference>
   </ItemGroup>

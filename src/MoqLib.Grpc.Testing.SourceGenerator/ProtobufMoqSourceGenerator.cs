@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
 using System.Text;
-using Grpc.Testing.Moq.Protobuf;
+using MoqLib.Grpc.Testing.SourceGenerator.Protobuf;
 using HandlebarsDotNet;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 
-namespace Grpc.Testing.Moq;
+namespace MoqLib.Grpc.Testing.SourceGenerator;
 
 [Generator]
 public class ProtobufMoqSourceGenerator : ISourceGenerator

@@ -1,7 +1,7 @@
 using MyCompany.Grpc.Services.Mocks;
 using MyCompany.Grpc.Services;
 
-namespace Grpc.Testing.Moq.Tests;
+namespace MoqLib.Grpc.Testing.SourceGenerator.Tests;
 
 public class ProductsServiceUnitTests
 {

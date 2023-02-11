@@ -1,6 +1,6 @@
 ﻿using CaseExtensions;
 
-namespace Grpc.Testing.Moq.Protobuf;
+namespace MoqLib.Grpc.Testing.SourceGenerator.Protobuf;
 
 public class ProtobufType : ProtobufItem
 {

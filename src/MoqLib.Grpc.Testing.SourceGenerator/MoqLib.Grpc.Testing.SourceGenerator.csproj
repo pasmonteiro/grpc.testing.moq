@@ -7,16 +7,16 @@
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 
-    <PackageId>Grpc.Testing.Moq</PackageId>
+    <PackageId>MoqLib.Grpc.Testing.SourceGenerator</PackageId>
     <Authors>Pedro Monteiro</Authors>
     <Description></Description>
     <Copyright>Copyright © Pedro Monteiro 2023</Copyright>
-    <PackageProjectUrl>https://github.com/pasmonteiro/grpc.testing.moq</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/pasmonteiro/MoqLib.Grpc.Testing.SourceGenerator</PackageProjectUrl>
     <PackageIcon></PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/pasmonteiro/grpc.testing.moq</RepositoryUrl>
     <RespositoryType>git</RespositoryType>
-    <PackageTags>grpc;rpc;C#;moq;unittest;unittesting;mocks;mocking;tdd</PackageTags>
+    <PackageTags>grpc;rpc;C#;moq;unittest;unittesting;mocks;mocking;tdd;source;generator</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <EnablePackageValidation>true</EnablePackageValidation>
 
@@ -41,7 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- <None Include="Grpc.Testing.Moq.Build.props" Pack="true" PackagePath="\" /> -->
+    <!-- <None Include="MoqLib.Grpc.Testing.SourceGenerator.Build.props" Pack="true" PackagePath="\" /> -->
   </ItemGroup>
 
   <PropertyGroup>
