@@ -41,7 +41,7 @@
     <None Include="..\..\README.md" Pack="true" PackagePath="\" />
     <None Include="..\..\LICENSE.md" Pack="true" PackagePath="LICENSE.md" />
     <None Include="..\..\logo.png" Pack="true" PackagePath="\" />
-    <None Include="..\MoqLib.Grpc.Testing.SourceGenerator.props" Pack="true" PackagePath="\" />
+    <None Include="build\MoqLib.Grpc.Testing.SourceGenerator.props" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <PropertyGroup>
