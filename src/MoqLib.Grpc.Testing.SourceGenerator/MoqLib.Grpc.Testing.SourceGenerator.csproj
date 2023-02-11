@@ -7,12 +7,14 @@
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 
+    <Version>1.0.1</Version>
+    <PackageVersionId>1.0.1</PackageVersionId>
     <PackageId>MoqLib.Grpc.Testing.SourceGenerator</PackageId>
     <Authors>Pedro Monteiro</Authors>
-    <Description></Description>
+    <Description>This package generates Mock setup methods using Source Generators to make gRPC tests easier.</Description>
     <Copyright>Copyright © Pedro Monteiro 2023</Copyright>
-    <PackageProjectUrl>https://github.com/pasmonteiro/MoqLib.Grpc.Testing.SourceGenerator</PackageProjectUrl>
-    <PackageIcon></PackageIcon>
+    <PackageProjectUrl>https://github.com/pasmonteiro/grpc.testing.moq</PackageProjectUrl>
+    <PackageIcon>logo.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/pasmonteiro/grpc.testing.moq</RepositoryUrl>
     <RespositoryType>git</RespositoryType>
@@ -38,10 +40,8 @@
   <ItemGroup>
     <None Include="..\..\README.md" Pack="true" PackagePath="\" />
     <None Include="..\..\LICENSE.md" Pack="true" PackagePath="LICENSE.md" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <!-- <None Include="MoqLib.Grpc.Testing.SourceGenerator.Build.props" Pack="true" PackagePath="\" /> -->
+    <None Include="..\..\logo.png" Pack="true" PackagePath="\" />
+    <None Include="..\MoqLib.Grpc.Testing.SourceGenerator.props" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <PropertyGroup>

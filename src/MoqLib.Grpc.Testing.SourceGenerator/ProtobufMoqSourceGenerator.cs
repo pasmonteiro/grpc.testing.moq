@@ -17,7 +17,7 @@ public class ProtobufMoqSourceGenerator : ISourceGenerator
         var files = context.AdditionalFiles.ToList();
         if (!files.Any())
         {
-            LogInformation(context, "CA002", "No AdditionalFiles found", "Please ensure AdditionalFiles are present in your .csproj file.");
+            LogInformation(context, "CA002", "No AdditionalFiles found", "Please ensure AdditionalFiles are present in your .csproj file.", Helper.GetDiagnosticLocation());
             return;
         }
 
@@ -28,14 +28,14 @@ public class ProtobufMoqSourceGenerator : ISourceGenerator
         {
             try
             {
-                LogInformation(context, "CA002", "AdditionalFiles found", "reading...");
+                LogInformation(context, "CA002", "AdditionalFiles found", "reading...", Helper.GetDiagnosticLocation());
                 ProtobufFile protobufFile;
 
                 using (var stream = new FileStream(file.Path, FileMode.Open))
                 using (var reader = new StreamReader(stream))
                     protobufFile = ProtobufFileInfo.Read(file, reader);
 
-                LogInformation(context, "CA002", "AdditionalFiles found", $"hello: {protobufFile.CsharpNamespace?.Value} | {protobufFile.Namespace?.Value}");
+                LogInformation(context, "CA002", "AdditionalFiles found", $"hello: {protobufFile.CsharpNamespace?.Value} | {protobufFile.Namespace?.Value}", Helper.GetDiagnosticLocation());
                 if (protobufFile is not null)
                 {
                     protobufFiles.Add(protobufFile);
@@ -48,7 +48,7 @@ public class ProtobufMoqSourceGenerator : ISourceGenerator
             }
             catch (System.Exception ex)
             {
-                LogInformation(context, "CA003", "Mock generation", $"An error occured while reading for {file.Path}. Exception message: {ex.Message}");
+                LogInformation(context, "CA003", "Mock generation", $"An error occured while reading for {file.Path}. Exception message: {ex.Message}", Helper.GetDiagnosticLocation());
             }
         }
 
@@ -60,7 +60,7 @@ public class ProtobufMoqSourceGenerator : ISourceGenerator
 
                 if (service is null)
                 {
-                    LogInformation(context, "CA005", "Mock generation", $"No services found in {protobufFile.additionalFile.Path}.");
+                    LogInformation(context, "CA005", "Mock generation", $"No services found in {protobufFile.additionalFile.Path}.", Helper.GetDiagnosticLocation());
                     continue;
                 }
 
@@ -100,13 +100,13 @@ public class ProtobufMoqSourceGenerator : ISourceGenerator
                     toolVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString()
                 });
 
-                LogInformation(context, "CA002", "AdditionalFiles found", $"Adding source... {className}");
+                LogInformation(context, "CA002", "AdditionalFiles found", $"Adding source... {className}", Helper.GetDiagnosticLocation());
 
                 context.AddSource($"{className}.g.cs", SourceText.From(generatedClass, Encoding.UTF8));
             }
             catch (System.Exception ex)
             {
-                LogInformation(context, "CA004", "Mock generation", $"An error occured while generating for {protobufFile.additionalFile.Path}. Exception message: {ex.Message}");
+                LogInformation(context, "CA004", "Mock generation", $"An error occured while generating for {protobufFile.additionalFile.Path}. Exception message: {ex.Message}", Helper.GetDiagnosticLocation());
             }
         }
     }
@@ -115,11 +115,11 @@ public class ProtobufMoqSourceGenerator : ISourceGenerator
     {
     }
 
-    static void LogInformation(GeneratorExecutionContext context, string id, string title, string message)
+    static void LogInformation(GeneratorExecutionContext context, string id, string title, string message, Location location)
     {
         context.ReportDiagnostic(Diagnostic.Create(
                 new DiagnosticDescriptor(id, title, message, "Proto", DiagnosticSeverity.Warning, true),
-                Helper.GetDiagnosticLocation()
+                location
             ));
     }
 }
