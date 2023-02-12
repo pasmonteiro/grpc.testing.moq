@@ -1,14 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>10.0</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 
-    <Version>1.1.0</Version>
-    <PackageVersionId>1.1.0</PackageVersionId>
+    <Version>1.2.0</Version>
+    <PackageVersionId>1.2.0</PackageVersionId>
     <PackageId>MoqLib.Grpc.Testing.SourceGenerator</PackageId>
     <Authors>Pedro Monteiro</Authors>
     <Description>This package generates Mock setup methods using Source Generators to make gRPC tests easier.</Description>
@@ -21,8 +22,6 @@
     <PackageTags>grpc;rpc;C#;moq;unittest;unittesting;mocks;mocking;tdd;source;generator</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <EnablePackageValidation>true</EnablePackageValidation>
-
-    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
   </PropertyGroup>
 
   <ItemGroup>
