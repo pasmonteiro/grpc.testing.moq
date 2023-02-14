@@ -1,11 +1,12 @@
-﻿namespace MoqLib.Grpc.Testing.SourceGenerator.Protobuf;
-
-public class ProtobufImport : ProtobufItem
+﻿namespace MoqLib.Grpc.Testing.SourceGenerator.Protobuf
 {
-    public string Value { get; private set; }
-
-    public ProtobufImport(string line)
+    public class ProtobufImport : ProtobufItem
     {
-        Value = line;
+        public string Value { get; private set; }
+
+        public ProtobufImport(string line)
+        {
+            Value = line;
+        }
     }
 }

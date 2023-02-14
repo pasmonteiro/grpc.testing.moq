@@ -1,46 +1,48 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System.IO;
+using Microsoft.CodeAnalysis;
 
-namespace MoqLib.Grpc.Testing.SourceGenerator.Protobuf;
-
-public class ProtobufFileInfo
+namespace MoqLib.Grpc.Testing.SourceGenerator.Protobuf
 {
-    public static ProtobufFile Read(AdditionalText additionalFile, StreamReader reader)
+    public class ProtobufFileInfo
     {
-        var file = new ProtobufFile();
-        file.additionalFile = additionalFile;
-
-        while (!reader.EndOfStream)
+        public static ProtobufFile Read(AdditionalText additionalFile, StreamReader reader)
         {
-            var line = reader.ReadLine();
-            var trimLine = line?.Trim();
+            var file = new ProtobufFile();
+            file.additionalFile = additionalFile;
 
-            if (string.IsNullOrEmpty(trimLine)) continue;
-            if (trimLine.StartsWith("import"))
+            while (!reader.EndOfStream)
             {
-                file.Imports.Add(new ProtobufImport(trimLine));
-                continue;
+                var line = reader.ReadLine();
+                var trimLine = line?.Trim();
+
+                if (string.IsNullOrEmpty(trimLine)) continue;
+                if (trimLine.StartsWith("import"))
+                {
+                    file.Imports.Add(new ProtobufImport(trimLine));
+                    continue;
+                }
+                if (trimLine.StartsWith("service"))
+                {
+                    file.Services.Add(new ProtobufService(trimLine, reader));
+                    continue;
+                }
+                if (trimLine.StartsWith("package"))
+                {
+                    file.Namespace = new ProtobufNamespace(trimLine);
+                    continue;
+                }
+                if (trimLine.StartsWith("option csharp_namespace"))
+                {
+                    file.CsharpNamespace = new ProtobufNamespace(trimLine
+                        .Replace("option csharp_namespace", "")
+                        .Replace("=", "")
+                        .Trim()
+                    );
+                    continue;
+                }
             }
-            if (trimLine.StartsWith("service"))
-            {
-                file.Services.Add(new ProtobufService(trimLine, reader));
-                continue;
-            }
-            if (trimLine.StartsWith("package"))
-            {
-                file.Namespace = new ProtobufNamespace(trimLine);
-                continue;
-            }
-            if (trimLine.StartsWith("option csharp_namespace"))
-            {
-                file.CsharpNamespace = new ProtobufNamespace(trimLine
-                    .Replace("option csharp_namespace", "")
-                    .Replace("=", "")
-                    .Trim()
-                );
-                continue;
-            }
+
+            return file;
         }
-
-        return file;
     }
 }

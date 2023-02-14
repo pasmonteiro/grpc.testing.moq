@@ -1,5 +1,6 @@
 using MyCompany.Grpc.Services.Mocks;
 using MyCompany.Grpc.Services;
+using Xunit;
 
 namespace MoqLib.Grpc.Testing.SourceGenerator.Tests;
 

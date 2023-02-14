@@ -1,35 +1,37 @@
-﻿using CaseExtensions;
+﻿using System.Collections.Generic;
+using CaseExtensions;
 
-namespace MoqLib.Grpc.Testing.SourceGenerator.Protobuf;
-
-public class ProtobufType : ProtobufItem
+namespace MoqLib.Grpc.Testing.SourceGenerator.Protobuf
 {
-    public string Name { get; private set; }
-
-    public ProtobufType(string line)
+    public class ProtobufType : ProtobufItem
     {
-        Name = line.Replace("(", "").Replace(")", "").Trim();
-    }
+        public string Name { get; private set; }
 
-    public void ResolveName(Dictionary<string, string> namespaceMappings)
-    {
-        foreach (var namespaceMapping in namespaceMappings)
+        public ProtobufType(string line)
         {
-            if (Name.Contains(namespaceMapping.Key))
+            Name = line.Replace("(", "").Replace(")", "").Trim();
+        }
+
+        public void ResolveName(Dictionary<string, string> namespaceMappings)
+        {
+            foreach (var namespaceMapping in namespaceMappings)
             {
-                Name = Name.Replace(namespaceMapping.Key, namespaceMapping.Value);
-                break;
+                if (Name.Contains(namespaceMapping.Key))
+                {
+                    Name = Name.Replace(namespaceMapping.Key, namespaceMapping.Value);
+                    break;
+                }
             }
+
+            var splitted = Name.Split('.');
+
+            for (var i = 0; i < splitted.Length; i++)
+            {
+                splitted[i] = splitted[i].ToPascalCase();
+            }
+
+            Name = string.Join(".", splitted);
+            if (Name == "Google.Protobuf.Empty") Name = "Google.Protobuf.WellKnownTypes.Empty";
         }
-
-        var splitted = Name.Split('.');
-
-        for (var i = 0; i < splitted.Length; i++)
-        {
-            splitted[i] = splitted[i].ToPascalCase();
-        }
-
-        Name = string.Join(".", splitted);
-        if (Name == "Google.Protobuf.Empty") Name = "Google.Protobuf.WellKnownTypes.Empty";
     }
 }

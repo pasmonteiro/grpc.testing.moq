@@ -1,31 +1,35 @@
-﻿namespace MoqLib.Grpc.Testing.SourceGenerator.Protobuf;
+﻿using System.Collections.Generic;
+using System.IO;
 
-public class ProtobufService : ProtobufItem
+namespace MoqLib.Grpc.Testing.SourceGenerator.Protobuf
 {
-    public string Name { get; private set; }
-    public List<ProtobufMethod> Methods { get; private set; } = new List<ProtobufMethod>();
-
-    public ProtobufService(string line, StreamReader reader)
+    public class ProtobufService : ProtobufItem
     {
-        var lineItems = line.Split(' ');
-        Name = lineItems[1];
+        public string Name { get; private set; }
+        public List<ProtobufMethod> Methods { get; private set; } = new List<ProtobufMethod>();
 
-        bool isCurlyBracesOpened = line.Trim().EndsWith("{");
-        while (!reader.EndOfStream)
+        public ProtobufService(string line, StreamReader reader)
         {
-            var cLine = reader.ReadLine();
-            var trimLine = cLine?.Trim();
-            if (string.IsNullOrEmpty(trimLine)) continue;
-            if (trimLine.StartsWith("}") == true) break;
-            if (trimLine.StartsWith("{"))
+            var lineItems = line.Split(' ');
+            Name = lineItems[1];
+
+            bool isCurlyBracesOpened = line.Trim().EndsWith("{");
+            while (!reader.EndOfStream)
             {
-                isCurlyBracesOpened = true;
-                continue;
-            }
-            if (trimLine.StartsWith("rpc"))
-            {
-                Methods.Add(new ProtobufMethod(trimLine));
-                continue;
+                var cLine = reader.ReadLine();
+                var trimLine = cLine?.Trim();
+                if (string.IsNullOrEmpty(trimLine)) continue;
+                if (trimLine.StartsWith("}") == true) break;
+                if (trimLine.StartsWith("{"))
+                {
+                    isCurlyBracesOpened = true;
+                    continue;
+                }
+                if (trimLine.StartsWith("rpc"))
+                {
+                    Methods.Add(new ProtobufMethod(trimLine));
+                    continue;
+                }
             }
         }
     }
