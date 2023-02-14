@@ -14,25 +14,17 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Setup .net6.0
+    - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: | 
+          6.0.x
+          7.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build net6.0
-      run: dotnet build src/MoqLib.Grpc.Testing.SourceGenerator/MoqLib.Grpc.Testing.SourceGenerator.csproj -c Release --no-restore -p:TargetFrameworks=net6.0
-    - name: Nuget Pack net6.0
-      run: dotnet pack src/MoqLib.Grpc.Testing.SourceGenerator/MoqLib.Grpc.Testing.SourceGenerator.csproj -c Release -p:TargetFrameworks=net6.0
-    
-    - name: Setup .net7.0
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 7.0.x
-    - name: Build net7.0
-      run: dotnet build src/MoqLib.Grpc.Testing.SourceGenerator/MoqLib.Grpc.Testing.SourceGenerator.csproj -c Release --no-restore -p:TargetFrameworks=net7.0
-    - name: Nuget Pack net7.0
-      run: dotnet pack src/MoqLib.Grpc.Testing.SourceGenerator/MoqLib.Grpc.Testing.SourceGenerator.csproj -c Release -p:TargetFrameworks=net7.0
-    
+    - name: Build
+      run: dotnet build src/MoqLib.Grpc.Testing.SourceGenerator/MoqLib.Grpc.Testing.SourceGenerator.csproj -c Release --no-restore
+    - name: Nuget Pack
+      run: dotnet pack src/MoqLib.Grpc.Testing.SourceGenerator/MoqLib.Grpc.Testing.SourceGenerator.csproj -c Release
     - name: Nuget Push
       run: nuget push ./**/*.nupkg -Source ${{ vars.NUGETSOURCE }} -ApiKey ${{ secrets.NUGETTOKEN }} -SkipDuplicate -NoSymbols true
