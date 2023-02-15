@@ -7,8 +7,8 @@
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 
-    <Version>1.5.0</Version>
-    <PackageVersionId>1.5.0</PackageVersionId>
+    <Version>1.6.0</Version>
+    <PackageVersionId>1.6.0</PackageVersionId>
     <PackageId>MoqLib.Grpc.Testing.SourceGenerator</PackageId>
     <Authors>Pedro Monteiro</Authors>
     <Description>This package generates Mock setup methods using Source Generators to make gRPC tests easier.</Description>
@@ -25,7 +25,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.3.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
