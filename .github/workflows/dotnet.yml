@@ -17,14 +17,12 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: | 
-          6.0.x
-          7.0.x
+        dotnet-version: 7.0.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
       run: dotnet build src/MoqLib.Grpc.Testing.SourceGenerator/MoqLib.Grpc.Testing.SourceGenerator.csproj -c Release --no-restore
     - name: Nuget Pack
-      run: nuget pack MoqLib.Grpc.Testing.SourceGenerator.nuspec
+      run: dotnet pack src/MoqLib.Grpc.Testing.SourceGenerator/MoqLib.Grpc.Testing.SourceGenerator.csproj -c Release
     - name: Nuget Push
       run: nuget push ./**/*.nupkg -Source ${{ vars.NUGETSOURCE }} -ApiKey ${{ secrets.NUGETTOKEN }} -SkipDuplicate -NoSymbols true
