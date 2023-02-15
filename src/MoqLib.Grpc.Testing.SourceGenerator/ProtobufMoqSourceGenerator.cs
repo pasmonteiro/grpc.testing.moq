@@ -76,7 +76,7 @@ namespace MoqLib.Grpc.Testing.SourceGenerator
                     var generatedClass = Handlebars.Compile(template)(new
                     {
                         usingNamespace = protobufFile.CsharpNamespace.Value,
-                        namespaceName = $"{protobufFile.CsharpNamespace.Value}.Mocks",
+                        namespaceName = "MoqLib.GeneratedMocks",
                         className,
                         grpcClient,
                         methods = service.Methods.Select(_ => new
