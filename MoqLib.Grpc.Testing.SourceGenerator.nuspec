@@ -14,17 +14,23 @@
     <tags>grpc rpc C# moq unittest unittesting mocks mocking tdd source generator</tags>
     <repository url="https://github.com/pasmonteiro/grpc.testing.moq" />
     <dependencies>
-      <group targetFramework="net6.0" />
-      <group targetFramework="net7.0" />
+      <group targetFramework="net6.0">
+        <dependency id="Handlebars.Net" version="2.1.0" />
+        <dependency id="CaseExtensions" version="1.1.0" />
+      </group>
+      <group targetFramework="net7.0">
+        <dependency id="Handlebars.Net" version="2.1.0" />
+        <dependency id="CaseExtensions" version="1.1.0" />
+      </group>
     </dependencies>
   </metadata>
   <files>
-    <file src="E:\pasmo\github\moqlib.grpc.testing\README.md" target="\README.md" />
-    <file src="E:\pasmo\github\moqlib.grpc.testing\LICENSE.md" target="LICENSE.md" />
-    <file src="E:\pasmo\github\moqlib.grpc.testing\logo.png" target="\logo.png" />
-    <file src="E:\pasmo\github\moqlib.grpc.testing\src\MoqLib.Grpc.Testing.SourceGenerator\build\MoqLib.Grpc.Testing.SourceGenerator.props" target="\build\MoqLib.Grpc.Testing.SourceGenerator.props" />
-    <file src="E:\pasmo\github\moqlib.grpc.testing\src\MoqLib.Grpc.Testing.SourceGenerator\bin\Release\net6.0\MoqLib.Grpc.Testing.SourceGenerator.dll" target="lib\net6.0\MoqLib.Grpc.Testing.SourceGenerator.dll" />
-    <file src="E:\pasmo\github\moqlib.grpc.testing\src\MoqLib.Grpc.Testing.SourceGenerator\bin\Release\net7.0\MoqLib.Grpc.Testing.SourceGenerator.dll" target="lib\net7.0\MoqLib.Grpc.Testing.SourceGenerator.dll" />
-    <file src="E:\pasmo\github\moqlib.grpc.testing\src\MoqLib.Grpc.Testing.SourceGenerator\Templates\Class.handlebars" target="analyzers\dotnet\cs\Templates\Class.handlebars" />
+    <file src="README.md" target="\README.md" />
+    <file src="LICENSE.md" target="LICENSE.md" />
+    <file src="logo.png" target="\logo.png" />
+    <file src="src\MoqLib.Grpc.Testing.SourceGenerator\build\MoqLib.Grpc.Testing.SourceGenerator.props" target="\build\MoqLib.Grpc.Testing.SourceGenerator.props" />
+    <file src="src\MoqLib.Grpc.Testing.SourceGenerator\bin\Release\net6.0\MoqLib.Grpc.Testing.SourceGenerator.dll" target="lib\net6.0\MoqLib.Grpc.Testing.SourceGenerator.dll" />
+    <file src="src\MoqLib.Grpc.Testing.SourceGenerator\bin\Release\net7.0\MoqLib.Grpc.Testing.SourceGenerator.dll" target="lib\net7.0\MoqLib.Grpc.Testing.SourceGenerator.dll" />
+    <file src="src\MoqLib.Grpc.Testing.SourceGenerator\Templates\Class.handlebars" target="analyzers\dotnet\cs\Templates\Class.handlebars" />
   </files>
 </package>
